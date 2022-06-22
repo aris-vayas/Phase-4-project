@@ -1,8 +1,19 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import { Grid } from "@mui/material";
-// import ListingCard from "./ListingCard";
+import { Route, Switch } from "react-router-dom";
+
+import { useEffect, useState } from "react";
+
 function ProductPage({ items, delItem }) {
+  const [plants, setPlants] = useState([]);
+  const [errors, setErrors] = useState(false);
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/productions")
+      .then((res) => res.json())
+      .then(setPlants);
+  }, []);
   const plants = [
     {
       name: "Ageratum",
