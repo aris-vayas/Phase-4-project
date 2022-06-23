@@ -1,46 +1,56 @@
-// import * as React from "react";
-// import Box from "@mui/material/Box";
-// import Input from "@mui/material/Input";
-
-// const ariaLabel = { "aria-label": "description" };
-
-// export default function Inputs() {
-//   return (
-//     <Box
-//       component="form"
-//       sx={{
-//         "& > :not(style)": { m: 1 },
-//       }}
-//       noValidate
-//       autoComplete="off"
-//     >
-//       <Input defaultValue="Hello world" inputProps={ariaLabel} />
-//       <Input placeholder="Placeholder" inputProps={ariaLabel} />
-//       <Input disabled defaultValue="Disabled" inputProps={ariaLabel} />
-//       <Input defaultValue="Error" error inputProps={ariaLabel} />
-//     </Box>
-//   );
-// }
-
-import React from "react";
-import { useForm } from "react-hook-form";
 import { Alert } from "@mui/material";
+import React, { useState } from "react";
 
-export default function App() {
-  const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
-  };
+function Auth() {
+  const [username, setUsername] = useState("");
 
+  const [password, setPassword] = useState("");
+
+  const [errors, setErrors] = useState();
+
+  function onSubmit(e) {
+    e.preventDefault();
+    const user = {
+      username: username,
+
+      password,
+    };
+
+    fetch(`/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        if (json.errors) setErrors(json.errors);
+      });
+    setUsername("");
+    setPassword("");
+  }
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("firstName", { required: true, maxLength: 20 })} />
-      <input {...register("lastName", { pattern: /^[A-Za-z]+$/i })} />
-      <input
-        {...register("age", { required: true, maxLength: 16, minLength: 8 })}
-      />
-      <input type="submit" />
-    </form>
+    <>
+      <form onSubmit={onSubmit}>
+        <input
+          placeholder="Username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <input
+          placeholder="Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <input type="submit" value="Sign up!" />
+      </form>
+      {errors ? <Alert>{errors}</Alert> : null}
+    </>
   );
 }
+
+export default Auth;

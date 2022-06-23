@@ -37,7 +37,7 @@ const ResponsiveAppBar = () => {
   };
 
   const handleCloseUserMenu = (e) => {
-    console.log(e.target);
+    console.log(e.currentTarget);
     setAnchorElUser(null);
   };
 

@@ -2,11 +2,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 
 function ShoppingCart() {
-  return (
-    <div>
-      <ProductCard />
-    </div>
-  );
+  return <div>render cart here</div>;
 }
 
 export default ShoppingCart;
