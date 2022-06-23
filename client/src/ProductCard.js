@@ -6,13 +6,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function ProductCard({ name, image, description }) {
+export default function ProductCard({ name, image_url, description }) {
   function handleBuyButton() {
     console.log("buy button clicked");
   }
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" height="300" image={image} alt="plant" />
+      <CardMedia component="img" height="300" image={image_url} alt="plant" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {name}

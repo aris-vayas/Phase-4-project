@@ -8,9 +8,9 @@ import { useEffect, useState } from "react";
 function ProductPage({ items, delItem }) {
   const [plants, setPlants] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/plants")
+    fetch("/items")
       .then((res) => res.json())
-      .then(setPlants);
+      .then((data) => setPlants(data));
   }, []);
   // const plants = [
   //   {

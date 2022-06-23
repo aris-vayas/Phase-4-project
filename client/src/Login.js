@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { Alert } from "@mui/material";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState();
 
   function onSubmit(e) {
     e.preventDefault();
@@ -23,6 +24,9 @@ function Login() {
         console.log(json);
         if (json.errors) setErrors(json.errors);
       });
+
+    setUsername("");
+    setPassword("");
   }
   return (
     <>
@@ -46,7 +50,7 @@ function Login() {
 
         <input type="submit" value="Login!" />
       </form>
-      {errors ? errors.map((e) => <div>{e}</div>) : null}
+      {errors ? <Alert>{errors}</Alert> : null}
     </>
   );
 }
