@@ -2,10 +2,10 @@ import React from "react";
 
 import ProductPage from "./ProductPage";
 import { Grid } from "@mui/material";
-function Home() {
+function Home({ username }) {
   return (
     <div>
-      <ProductPage />
+      <ProductPage username={username} />
     </div>
   );
 }

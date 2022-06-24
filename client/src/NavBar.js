@@ -17,8 +17,8 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 // import LoginBar from "./NewNavBar";
-const pages = ["Products", "ShoppingCart"];
-const settings = ["Home", "SignUp", "Logout", "Login"]; //logout
+const pages = ["About", "ShoppingCart"];
+const settings = ["Home", "Logout"]; //logout
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
