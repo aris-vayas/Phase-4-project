@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Item.destroy_all
+User.destroy_all
+Cart.destroy_all
 
 
 puts "🍕 Seeding items..."
@@ -46,20 +48,20 @@ Item.create!([
 
 puts "🍕 Seeding users..."
 
-User.create!([
+User.create([
     {
       username: "Aris",
-      password: "sk876466155p"
+      password_digest: "sk876466155p"
     },
     {
     username: "Sergio",
-    password: "arjy7uhd9d"
+    password_digest: "arjy7uhd9d"
     }])
 
     puts "🍕 Seeding carts..."
 
 
-Cart.create!([
+Cart.create([
         {
           user_id: 1,
           cart_number: 1
@@ -68,5 +70,7 @@ Cart.create!([
             user_id: 2,
             cart_number: 2
           }])
+
+OrderItem.create(item_id: 2, cart_id: 1)
 
 

@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
-function ProductPage({ items, delItem }) {
+function ProductPage({ items, delItem, username }) {
   const [plants, setPlants] = useState([]);
   useEffect(() => {
     fetch("/items")
@@ -55,7 +55,7 @@ function ProductPage({ items, delItem }) {
       >
         {plants.map((plant) => (
           <Grid item xs={12} sm={6} md={3}>
-            <ProductCard {...plant} />
+            <ProductCard {...plant} username={username} />
           </Grid>
         ))}
       </Grid>

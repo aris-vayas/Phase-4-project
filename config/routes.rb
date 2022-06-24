@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :items
   resources :users
   
-  post '/login' , to: 'sessions#login'
-  # get "/me", to: "users#show"
+  get '/authorized_user', to: 'users#show'
+
+  # Login / Logout Routes
+  post '/login', to: 'sessions#login'
+  delete '/logout', to: 'sessions#logout'
 end
